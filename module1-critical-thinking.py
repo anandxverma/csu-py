@@ -13,4 +13,4 @@ n1 = int(input("Enter the first number n1: "))
 n2 = int(input("Enter the second number n2: "))
 
 print ("Multiplication of n1 and n2 =", n1 * n2)
-print ("Division of n1 and n2 =", n1 / n2)
+print ("Division of n1 by n2 =", n1 / n2)
