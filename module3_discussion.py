@@ -23,8 +23,19 @@ max_height = max(stu_height)
 # Height of the shortest student
 min_height = min(stu_height)
 
+# Median Height
+med_height = 0.0
+# If number of students is even, then median = average of the two middle values
+# Else median = middle value
+if num_stu % 2 == 0:
+    med_height = (stu_height[int((num_stu / 2) - 1)] + stu_height[int((num_stu / 2))]) / 2
+else:
+    med_height = stu_height[int((num_stu / 2)) - 1]
+
+
 # Print all values
 print("Total number of students in the class: ", num_stu)
 print("Mean height of students in the class in cm: ", f"{mean_height:.1f}")
 print("Height of the tallest student in the class: ", f"{max_height:.1f}")
 print("Height of the shortest student in the class: ", f"{min_height:.1f}")
+print("Mediam Height of all students in the class: ", f"{med_height:.1f}")
