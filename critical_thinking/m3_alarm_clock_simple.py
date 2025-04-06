@@ -18,7 +18,7 @@ pattern = r"^([01]?[0-9]|2[0-3])$"
 match = re.match(pattern, current_time_in_hrs)
 # Exit program if the input is not in the correct format
 if not match:
-    print("Invalid time format. Please enter the time in 24hr format.")
+    print("Invalid time format. Please enter the time in 24hr format without the trailing minutes. Example: 14")
     exit()
 
 # Ask the user to input the number of hrs to set the future alarm
