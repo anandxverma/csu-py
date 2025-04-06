@@ -6,7 +6,8 @@ import datetime as dt
 # the number of hrs to set the future alarm
 
 # Ask the user to input the current time in 24hr or accept the current time
-current_time_in_hrs = input("Enter the current time in 24hr format or hit ENTER to accept the current time: ") or str(dt.datetime.now().hour)
+current_clock_hrs = str(dt.datetime.now().hour)
+current_time_in_hrs = input("Enter the current time in 24hr format or hit ENTER to accept the current time " + current_clock_hrs + " o'clock: ") or current_clock_hrs
 
 # Check the current time if it matches the 24hr format
 # Any of the following formats are accepted:
