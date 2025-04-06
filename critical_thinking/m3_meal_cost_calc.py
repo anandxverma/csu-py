@@ -1,5 +1,5 @@
 # This program calculates the total cost of a meal
-# Provided the meal price, it calculates total cost by adding the tip and tax
+# Provided the meal price, it calculates the total cost by adding the tip and tax
 
 # This function formats a Bill Line Item
 # Examples of Bill Line Item are Tax, Tip, Meal Price, and Total Cost etc

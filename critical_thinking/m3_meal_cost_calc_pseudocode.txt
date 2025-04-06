@@ -1,5 +1,5 @@
 # Program to calculate the total cost of a meal
-# Provided the meal price, calculates the total cost by adding the tip and tax
+# Provided the meal price, it calculates the total cost by adding the tip and tax
 
 # Define Constant Values for Tip and Tax rates
 TIP_RATE = 18%
@@ -19,6 +19,6 @@ tax_variable = meal_price_variable * TAX_RATE
 total_cost_variable = meal_price_variable + tip_variable + tax_variable
 
 # Display the results
-DISPLAY Tip amount = tip_variable
-DISPLAY Tax amount = tax_variable
-DISPLAY Total cost = total_cost_variable
+DISPLAY Tip amount: tip_variable
+DISPLAY Tax amount: tax_variable
+DISPLAY Total cost: total_cost_variable
