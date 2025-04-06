@@ -1,0 +1,18 @@
+# This program calculates when the alarm will go off in the future
+# based on the current time provided by the user and
+# the number of hrs to set the future alarm
+
+# Ask the user to input the current time in 24hr format
+INPUT current_time_in_hrs
+
+# Ask the user to input the number of hrs to set the future alarm
+INPUT hrs_to_wait_for_alarm
+
+# Calculate the future alarm time
+total_hrs_to_wait = current_time_in_hrs + hrs_to_wait_for_alarm
+# Calculate the number of days and hrs to wait for the alarm
+num_days_to_wait = total_hrs_to_wait // 24
+num_hrs_to_wait = total_hrs_to_wait % 24
+
+# Print the results
+DISPLAY The alarm will go off in num_days_to_wait days at num_hrs_to_wait hr
