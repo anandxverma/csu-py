@@ -1,5 +1,5 @@
 # This program calculates the total cost of a meal
-# Provided the meal price, it calculates total cost by adding the tax and tip
+# Provided the meal price, it calculates total cost by adding the tip and tax
 
 # This function formats a Bill Line Item
 # Examples of Bill Line Item are Tax, Tip, Meal Price, and Total Cost etc
@@ -17,14 +17,14 @@ TAX_RATE = 0.07                           # 7% tax
 MAX_LABEL_LEN = 30                        # Maximum length of the item label used for priniting the output
 LABEL_BILL_HEAD = "Bill calculations"     # Maximum length of the item label used for priniting the output
 
-# Ask user to input the meal price
+# Ask the user to input the meal price
 meal_price = float(input("Enter the price of the meal: $"))
 
-# Calculate tip
+# Calculate the tip amount
 # Note: tip is calculated on the pre-tax amount
 tip = float(meal_price * TIP_RATE)
 
-# Calculate tax
+# Calculate the tax amount
 tax = float(meal_price * TAX_RATE)
 
 # Calculate total cost
