@@ -7,7 +7,8 @@ import m3_alarm_clock_utility as m3utl
 # the number of hrs and minutes to set the future alarm
 
 # Ask the user to input the current time in 24hr format or accept the current time
-curr_time = input("Enter the current time in 24hr format: ") or str(dt.datetime.now().strftime("%H:%M"))
+curr_clock_time = str(dt.datetime.now().strftime("%H:%M"))
+curr_time = input("Enter the current time in 24hr format as hh:mm or hit ENTER to accept the current time " + curr_clock_time + " o'clock: ") or curr_clock_time
 
 # Check the current time if it matches the 24hr format
 # If it matches, then get the hours and minutes
