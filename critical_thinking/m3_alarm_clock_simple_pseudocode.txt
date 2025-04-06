@@ -1,8 +1,8 @@
-# This program calculates when the alarm will go off in the future
-# based on the current time provided by the user and
+# This program calculates when the alarm will go off
+# based on the current hr as provided by the user and
 # the number of hrs to set the future alarm
 
-# Ask the user to input the current time in 24hr format
+# Ask the user to input the current hr in 24hr format
 INPUT current_time_in_hrs
 
 # Ask the user to input the number of hrs to set the future alarm

@@ -44,10 +44,12 @@ hrs_to_alarm = (tot_min_to_alarm % 1440) // 60
 min_to_alarm = (tot_min_to_alarm % 1440) % 60
 
 # Print the results
+print("*" * 63)
 display_alarm_time = dt.datetime.strptime(str(hrs_to_alarm) + ":" + str(min_to_alarm), "%H:%M").strftime("%H:%M") + " o'clock."
 if days_to_alarm == 0:
-    print("The alarm is set to go off today at", display_alarm_time)
+    print("    The alarm is set to go off today at", display_alarm_time)
 elif days_to_alarm == 1:
-    print("The alarm is set to go off tomorrow at", display_alarm_time)
+    print("    The alarm is set to go off tomorrow at", display_alarm_time)
 else:
-    print("The alarm is set to go off in", str(days_to_alarm), "days at", display_alarm_time)
+    print("    The alarm is set to go off in", str(days_to_alarm), "days at", display_alarm_time)
+print("*" * 63)
