@@ -58,7 +58,7 @@ print()
 # "for" Loop Example 3
 # This example demonstrates loop compression technique in Python
 # Loop compression makes the code more compact, readable, and efficent
-# Syntax: [ <do something for the item> for <item> in <list> ]
+# Syntax: [ <do something on the item> for <item> in <list> ]
 # The example also demonstrates the use of Ternary operator
 # Syntax: <value1> if <condition is true> else <value2>
 # Re-initialize the grade groups
