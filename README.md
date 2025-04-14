@@ -5,3 +5,4 @@ CSU Global Python Assignments
 https://www.geeksforgeeks.org/loops-in-python/
 https://www.geeksforgeeks.org/eliminating-loop-from-python-code/
 https://docs.python.org/3.13/
+https://www.programiz.com/python-programming/class
