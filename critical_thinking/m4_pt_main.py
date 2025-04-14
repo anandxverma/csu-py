@@ -17,12 +17,9 @@ while True:
         item_quantity = int(input("Enter the item quantity: "))
 
         # Set item details and add to the items list
-        item1 = itemClass.ItemToPurchase()
-        item1.item_name = item_name
-        item1.item_price = item_price
-        item1.item_quantity = item_quantity
-        items.append(item1)
-        print(item1, "added to the cart.")
+        item = itemClass.ItemToPurchase(item_name, item_price, item_quantity)
+        items.append(item)
+        print(item, "added to the cart.")
 
         # Increment item count to record the number of items in the list
         item_count += 1
