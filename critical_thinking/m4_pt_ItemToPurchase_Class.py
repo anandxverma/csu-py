@@ -1,7 +1,8 @@
 # Class representing an item to purchase in a shopping cart
 # Class has three attributes: item_name, item_price, and item_quantity
-# Class has a method to calculate the total cost of the item
-# Class has a method to print the item details
+# Class has a two methods:
+# A method to calculate the total cost of the item
+# And a method to print the item details
 
 class ItemToPurchase:
 
