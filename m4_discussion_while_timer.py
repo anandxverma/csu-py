@@ -15,7 +15,7 @@ while True:
         break
     else:
         failed_attempts += 1
-        print(f"Incorrect password. You have {__MAX_RETRIES - failed_attempts} attempts left.")
+        print(f"Incorrect Access Code. You have {__MAX_RETRIES - failed_attempts} attempts left.")
     # If the maximum number of attempts has reached, wait for a while before allowing another attempt
     if failed_attempts == __MAX_RETRIES:
         print("Access denied. Too many failed attempts. Try after " + str(int(__SLEEP_TIME)) + " seconds.")
