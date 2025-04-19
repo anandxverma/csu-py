@@ -1,4 +1,4 @@
-import m4_pt_ItemToPurchase_class as itemClass
+import ItemToPurchaseClass as itemClass
 
 # Ask the user to enter details for all purchased items
 # Minimum 2 and Maximum 5 items are allowed
