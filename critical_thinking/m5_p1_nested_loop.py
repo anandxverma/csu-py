@@ -15,7 +15,7 @@ total_rainfall = 0.0
 
 # Get the number of years from the user
 years = int(input("Enter the number of years: "))
-while years <= 0:
+while years <= 0 :
     print("Invalid input. Please enter a positive number.")
     years = int(input("Enter the number of years: "))
 
@@ -28,9 +28,11 @@ for year in range(1, years + 1):
         rainfall = -1
         # Get the rainfall for the month
         while rainfall < 0:
-            rainfall = float(input(f"Enter the rainfall for {month} (in inches): "))
-            if rainfall < 0:
-                # Validate the input
+            try:
+                rainfall = float(input(f"Enter the rainfall for {month} (in inches): "))
+                if rainfall < 0:
+                    print("Invalid input. Please enter a non-negative number.")
+            except:
                 print("Invalid input. Please enter a non-negative number.")
         # Add to total rainfall
         total_rainfall += rainfall
