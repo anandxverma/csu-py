@@ -1,3 +1,5 @@
+import array as arr
+
 # Module 5 - Award Points System - Option 3
 # This program calculates the award points earned
 # by determining the number of books purchased within
@@ -22,7 +24,7 @@ purchased in the current month and displays the points awarded.
 # Book award points table
 # Array index represents the number of books purchased
 # And the corresponding value represents the points earned
-points_table = [0, 0, 5, 5, 15, 15, 30, 30, 60]
+points_table = arr.array('i', [0, 0, 5, 5, 15, 15, 30, 30, 60])
 
 # Initialize variables
 books_purchased = -1
