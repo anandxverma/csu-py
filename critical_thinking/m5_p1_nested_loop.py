@@ -15,7 +15,7 @@ total_rainfall = 0.0
 
 # Get the number of years from the user
 years = int(input("Enter the number of years: "))
-while years <= 0 :
+while years <= 0:
     print("Invalid input. Please enter a positive number.")
     years = int(input("Enter the number of years: "))
 
