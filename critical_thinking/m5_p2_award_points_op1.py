@@ -47,3 +47,4 @@ else:
 
 # Display the points earned
 print(f"Points earned this month: {points_earned}")
+print()
