@@ -37,7 +37,7 @@ if add_or_update == 1:
     name = input("Enter the name of the contact: ")
     phone = input("Enter the phone number of the contact: ")
     address = input("Enter the address of the contact: ")
-    contacts[name] = Contacts(name, phone, address)
+    contacts[name.lower] = Contacts(name, phone, address)
     print()
     print("Contacts list updated successfully...")
     print_contacts(contacts)
