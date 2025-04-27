@@ -34,10 +34,9 @@ for item in cart_items:
 # Print the shopping cart details
 print("\nOUTPUT SHOPPING CART")
 cart.print_cart()
-
-# Print the menu of actions and prompt for user input
 print()
 
+# Print the menu of actions and prompt for user input
 action = print_menu(cart)
 while action != "q":
     print()
