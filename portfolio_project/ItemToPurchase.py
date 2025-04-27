@@ -7,10 +7,11 @@
 class ItemToPurchase:
 
     # Constructor with default parameters
-    def __init__(self, name: str = "none", price: float = 0.0, quantity: int = 0):
-        self.item_name = name
-        self.item_price = price
-        self.item_quantity = quantity
+    def __init__(self, name: str = "none", price: float = 0.0, quantity: int = 0, description: str = "none"):
+        self._item_name = name
+        self._item_price = price
+        self._item_quantity = quantity
+        self._item_description = description
 
     # getter and setter for item_name
     @property
@@ -41,6 +42,14 @@ class ItemToPurchase:
             self._item_quantity = quantity
         else:
             raise ValueError("Quantity is not a valid number.")
+
+    # getter and setter for item_decription
+    @property
+    def description(self):
+        return self._item_description
+    @description.setter
+    def item_description(self, name):
+        self._item_description = name
 
     # Method to calculate total cost
     def calc_total_cost(self):
