@@ -1,21 +1,6 @@
 import ShoppingCart as sc
 import ItemToPurchase as itm
 import datetime as dt
-import time
-
-def print_blinking_text(text, duration_sec, interval_sec=0.5):
-    """Prints blinking text for a specified duration.
-    Args:
-        text: The text to blink.
-        duration_sec: The total duration for blinking in seconds.
-        interval_sec: The interval between blinks in seconds.
-    """
-    start_time = time.time()
-    while time.time() - start_time < duration_sec:
-        print(text, end="\r")  # Print text, carriage return to overwrite
-        time.sleep(interval_sec)
-        print(" " * len(text), end="\r")  # Print spaces to clear text
-        time.sleep(interval_sec)
 
 # Prints the menu of actions for the shopping cart
 def print_menu(cart: sc.ShoppingCart):
@@ -28,22 +13,23 @@ def print_menu(cart: sc.ShoppingCart):
     print("q - Quit")
     return input("Choose an action: ").lower()
 
+# Collection of items to be added to the initial shopping cart
+cart_items = [
+    itm.ItemToPurchase("Apple", 0.55, 6, "Fresh red apples"),
+    itm.ItemToPurchase("Banana", 0.35, 12, "Ripe bananas"),
+    itm.ItemToPurchase("Orange", 0.29, 5, "Juicy oranges"),
+    itm.ItemToPurchase("Grapes", 2.99, 2, "Seedless grapes"),
+    itm.ItemToPurchase("Mango", 1.55, 4, "Sweet mangoes")
+]
+
 # Main function to run the shopping portal
 # Initializes a shopping cart
 print("\nWELCOME TO THE SHOPPING PORTAL")
 customer_name = input("Please enter your name:").strip()
 print("\nHello", customer_name, "! Your shopping cart is being initialized with some items...\n")
 cart = sc.ShoppingCart(customer_name, dt.datetime.now().strftime("%B %d, %Y"))
-print_blinking_text(" Adding Apples...", 1)
-cart.add_item(itm.ItemToPurchase("Apple", 0.55, 6, "Fresh red apples"))
-print_blinking_text(" Adding Bananas...", 1)
-cart.add_item(itm.ItemToPurchase("Banana", 0.35, 12, "Ripe bananas"))
-print_blinking_text(" Adding Oranges...", 1)
-cart.add_item(itm.ItemToPurchase("Orange", 0.29, 5, "Juicy oranges"))
-print_blinking_text(" Adding Grapes...", 1)
-cart.add_item(itm.ItemToPurchase("Grapes", 2.99, 2, "Seedless grapes"))
-print_blinking_text(" Adding Mangoes...", 1)
-cart.add_item(itm.ItemToPurchase("Mango", 1.55, 4, "Sweet mangoes"))
+for item in cart_items:
+    cart.add_item(item)
 
 # Print the shopping cart details
 print("\nOUTPUT SHOPPING CART")
