@@ -7,8 +7,7 @@ def increase_count(word):
     # Find if the word exists in the word count list,
     # then increment the count
     # else create a new entry with 1
-    count = words_count[word] + 1 if word in words_count else 1
-    words_count[word] = count
+    words_count[word] = words_count[word] + 1 if word in words_count else 1
 
 # Function to decrease the word count
 def decrease_count(word):
