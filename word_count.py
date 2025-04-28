@@ -3,7 +3,7 @@ words_list = [ "hello", "world", "hello", "world", "hello", "world" ]
 words_count = { "hello": 3, "world": 3 }
 
 # Function to increase the word count
-def increment_count(word):
+def increase_count(word):
     # Find if the word exists in the word count list,
     # then increment the count
     # else create a new entry with 1
@@ -29,7 +29,7 @@ def decrease_count(word):
 def update_count(func):
     def wrapper(*args):
         if func.__name__ == "add_word":
-            increment_count(args[0])
+            increase_count(args[0])
         else:
             decrease_count(args[0])
         return func(*args)
