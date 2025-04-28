@@ -11,11 +11,12 @@ def increase_count(word):
 
 # Function to decrease the word count
 def decrease_count(word):
-    # Find the word in the list get its count
+    # Find the word in the list and get its count
     count = words_count[word] if word in words_count else 0
     # If the word is found and has only 1 count then
     # Remove the word from the word_count list
     # Else reduce the count by 1
+    # Do nothing is count is 0
     if count == 1:
         del words_count[word]
     elif count == 0:
@@ -29,8 +30,10 @@ def update_count(func):
     def wrapper(*args):
         if func.__name__ == "add_word":
             increase_count(args[0])
-        else:
+        elif func.__name__ == "remove_word":
             decrease_count(args[0])
+        else:
+            pass # Do nothing
         return func(*args)
     return wrapper
 
