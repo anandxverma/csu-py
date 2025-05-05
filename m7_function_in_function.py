@@ -18,7 +18,7 @@ def print_receipt_store2(item_details: dict[str, float]):
         print(f"{k} {amt_txt}")
         total += v
     print("=" * 30)
-    amt_txt = f"${total:.2f}".rjust(29 - len("Total"), "-")
+    amt_txt = f"${total:.2f}".rjust(28 - len("Total"), "-")
     print(f"{'Total'} {amt_txt}")
 
 def print_receipt(print_func, item_details: dict[str, float]):
