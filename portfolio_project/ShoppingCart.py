@@ -6,14 +6,14 @@ class ShoppingCart:
     # Class constructor
     def __init__(self, customer_name: str = "none", current_date: str = "January 1, 2020"):
         # Initialize the shopping cart with customer name, date, and an empty list of items
-        self._customer_name = customer_name
-        self._current_date = current_date
-        self._cart_items = []
+        self.__customer_name = customer_name
+        self.__current_date = current_date
+        self.__cart_items = []
 
     # Method check if an item is already in the cart
     def find_item(self, item_name: str) -> itm.ItemToPurchase:
         # Iterate through the cart items to check if the item is already in the cart
-        for item in self._cart_items:
+        for item in self.__cart_items:
             if item.item_name.lower() == item_name.lower():
                 return item
         return None
@@ -27,7 +27,7 @@ class ShoppingCart:
             existing_item.item_quantity += item.item_quantity
             print(f"Item '{item.item_name}' already in cart. Quantity updated to {existing_item.item_quantity}.")
         else:
-            self._cart_items.append(item)
+            self.__cart_items.append(item)
             print(f"Item '{item.item_name}' added to the cart.")
 
     # Method to remove an item from the shopping cart by name
@@ -39,7 +39,7 @@ class ShoppingCart:
         # If the item is in the cart, remove it
         if existing_item is not None:
             # Remove the item from the cart
-            self._cart_items.remove(existing_item)
+            self.__cart_items.remove(existing_item)
             action_taken = f"Item '{item_name}' removed from the cart."
 
         # Print the action taken
@@ -67,26 +67,26 @@ class ShoppingCart:
 
     # Get the number of items in the shopping cart
     def get_num_items_in_cart(self):
-        return sum(item.item_quantity for item in self._cart_items)
+        return sum(item.item_quantity for item in self.__cart_items)
     
     # Get the total cost of all items in the shopping cart
     def get_cost_of_cart(self):
         total_cost = 0
         # Iterate through the cart items to calculate the total cost
-        for item in self._cart_items:
+        for item in self.__cart_items:
             total_cost += item.calc_total_cost()
         return total_cost
     
     # Shopping cart details as string
     def __str__(self):
         # Cart header
-        txt = f"{self._customer_name}'s Shopping Cart - {self._current_date}"
+        txt = f"{self.__customer_name}'s Shopping Cart - {self.__current_date}"
         # Cart items
         if self.get_num_items_in_cart() == 0:
             txt += "\nShopping cart is empty"
         else:
             txt += f"\nNumber of Items: {self.get_num_items_in_cart()}"
-            for item in self._cart_items:
+            for item in self.__cart_items:
                 txt += f"\n{item}"
         # Total cost
         txt += f"\nTotal: ${self.get_cost_of_cart():.2f}"
@@ -106,8 +106,8 @@ class ShoppingCart:
 
     # Print shopping cart with item descriptions
     def print_descriptions(self):
-        print(f"{self._customer_name}'s Shopping Cart - {self._current_date}")
+        print(f"{self.__customer_name}'s Shopping Cart - {self.__current_date}")
         print("Item Descriptions")
-        for item in self._cart_items:
+        for item in self.__cart_items:
             print("{}: {}".format(item.item_name, item.item_description))
  
