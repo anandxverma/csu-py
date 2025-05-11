@@ -1,6 +1,6 @@
 IMPORT ShoppingCart
-IMPORT ItemToPurchase AS itm
-IMPORT datetime AS dt # For current date functionality
+IMPORT ItemToPurchase
+IMPORT datetime # For current date functionality
 
 # FUNCTION to print the menu and get user's choice
 FUNCTION print_menu(cart AS ShoppingCart) RETURNS STRING:
