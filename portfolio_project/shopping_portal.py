@@ -15,11 +15,9 @@ def print_menu(cart: sc.ShoppingCart):
 
 # Collection of items to be added to the initial shopping cart
 cart_items = [
-    itm.ItemToPurchase("Apple", 0.55, 6, "Fresh red apples"),
-    itm.ItemToPurchase("Banana", 0.35, 12, "Ripe bananas"),
-    itm.ItemToPurchase("Orange", 0.29, 5, "Juicy oranges"),
-    itm.ItemToPurchase("Grapes", 2.99, 2, "Seedless grapes"),
-    itm.ItemToPurchase("Mango", 1.55, 4, "Sweet mangoes")
+    itm.ItemToPurchase("Nike Romaleos", 189, 2, "Shoes for fitness classes or streaming workouts"),
+    itm.ItemToPurchase("Chocolate Chips", 3, 5, "Semi-sweet chocolate chips bag - 20 oz"),
+    itm.ItemToPurchase("Powerbeats2 Headphones", 128, 1, "Bluethooth-enabled, sports and running headphones")
 ]
 
 # Main function to run the shopping portal
