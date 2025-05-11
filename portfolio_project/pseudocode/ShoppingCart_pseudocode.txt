@@ -1,0 +1,138 @@
+IMPORT ItemToPurchase
+
+CLASS ShoppingCart:
+
+    # Attributes
+    PRIVATE __customer_name AS STRING
+    PRIVATE __current_date AS STRING
+    PRIVATE __cart_items AS LIST OF ItemToPurchase
+
+    # Class Constructor
+    FUNCTION __init__(customer_name DEFAULT "none", current_date DEFAULT "January 1, 2020"):
+        SET __customer_name TO customer_name
+        SET __current_date TO current_date
+        INITIALIZE __cart_items AS AN EMPTY LIST
+    END FUNCTION
+
+    # Method to find an item in the cart
+    FUNCTION find_item(item_name AS STRING) RETURNS ItemToPurchase OR NULL:
+        FOR EACH item IN __cart_items:
+            IF LOWERCASE(item.get_item_name()) EQUALS LOWERCASE(item_name) THEN
+                RETURN item
+            END IF
+        END FOR
+        RETURN NULL
+    END FUNCTION
+
+    # Method to add an item to the shopping cart
+    FUNCTION add_item(item AS ItemToPurchase):
+        DECLARE existing_item AS ItemToPurchase
+        SET existing_item TO find_item(item.get_item_name())
+
+        IF existing_item IS NOT NULL THEN
+            existing_item.set_item_quantity(existing_item.get_item_quantity() + item.get_item_quantity())
+            PRINT "Item '" + item.get_item_name() + "' already in cart. Quantity updated to " + existing_item.get_item_quantity() + "."
+        ELSE
+            APPEND item TO __cart_items
+            PRINT "Item '" + item.get_item_name() + "' added to the cart."
+        END IF
+    END FUNCTION
+
+    # Method to remove an item from the shopping cart by name
+    FUNCTION remove_item(item_name AS STRING):
+        DECLARE action_taken AS STRING
+        SET action_taken TO "Item '" + item_name + "' not found in the cart. Nothing removed."
+        DECLARE existing_item AS ItemToPurchase
+        SET existing_item TO find_item(item_name)
+
+        IF existing_item IS NOT NULL THEN
+            REMOVE existing_item FROM __cart_items
+            SET action_taken TO "Item '" + item_name + "' removed from the cart."
+        END IF
+
+        PRINT action_taken
+    END FUNCTION
+
+    # Method to modify an existing item in the shopping cart
+    FUNCTION modify_item(item_to_mod AS ItemToPurchase):
+        DECLARE item_mod_name AS STRING
+        SET item_mod_name TO item_to_mod.get_item_name()
+        DECLARE action_taken AS STRING
+        SET action_taken TO "Item '" + item_mod_name + "' not found in the cart. Nothing removed." #
+        DECLARE existing_item AS ItemToPurchase
+        SET existing_item TO find_item(item_mod_name)
+
+        IF existing_item IS NOT NULL THEN
+            IF item_to_mod.get_item_price() IS NOT NULL THEN #
+                existing_item.set_item_price(item_to_mod.get_item_price())
+            END IF
+            IF item_to_mod.get_item_quantity() IS NOT NULL THEN #
+                existing_item.set_item_quantity(item_to_mod.get_item_quantity())
+            END IF
+            SET action_taken TO "Item '" + item_mod_name + "' updated."
+        END IF
+
+        PRINT action_taken
+    END FUNCTION
+
+    # Get the number of items in the shopping cart
+    FUNCTION get_num_items_in_cart() RETURNS INTEGER:
+        DECLARE total_quantity AS INTEGER
+        SET total_quantity TO 0
+        FOR EACH item IN __cart_items:
+            SET total_quantity TO total_quantity + item.get_item_quantity()
+        END FOR
+        RETURN total_quantity
+    END FUNCTION
+
+    # Get the total cost of all items in the shopping cart
+    FUNCTION get_cost_of_cart() RETURNS FLOAT:
+        DECLARE total_cost AS FLOAT
+        SET total_cost TO 0.0
+        FOR EACH item IN __cart_items:
+            SET total_cost TO total_cost + item.calc_total_cost()
+        END FOR
+        RETURN total_cost
+    END FUNCTION
+
+    # Shopping cart details as string
+    FUNCTION __str__() RETURNS STRING:
+        DECLARE txt AS STRING
+        SET txt TO __customer_name + "'s Shopping Cart - " + __current_date
+
+        IF get_num_items_in_cart() EQUALS 0 THEN
+            SET txt TO txt + "\nShopping cart is empty"
+        ELSE
+            SET txt TO txt + "\nNumber of Items: " + get_num_items_in_cart()
+            FOR EACH item IN __cart_items:
+                SET txt TO txt + "\n" + item.__str__() # Assuming ItemToPurchase has a __str__ method
+            END FOR
+        END IF
+        SET txt TO txt + "\nTotal: $" + FORMAT(get_cost_of_cart(), ".2f")
+        RETURN txt
+    END FUNCTION
+
+    # Print the total cost of the shopping cart
+    FUNCTION print_total():
+        IF get_num_items_in_cart() EQUALS 0 THEN
+            PRINT "Shopping cart is empty"
+        ELSE
+            PRINT "Total: $" + FORMAT(get_cost_of_cart(), ".2f")
+        END IF
+    END FUNCTION
+
+    # Print the shopping cart details
+    FUNCTION print_cart():
+        PRINT __str__()
+    END FUNCTION
+
+    # Print shopping cart with item descriptions
+    FUNCTION print_descriptions():
+        PRINT __customer_name + "'s Shopping Cart - " + __current_date
+        PRINT "Item Descriptions"
+        FOR EACH item IN __cart_items:
+            PRINT item.get_item_name() + ": " + item.get_description() # Assuming ItemToPurchase has a get_description method
+        END FOR
+    END FUNCTION
+
+END CLASS

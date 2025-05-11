@@ -1,0 +1,103 @@
+IMPORT ShoppingCart
+IMPORT ItemToPurchase AS itm
+IMPORT datetime AS dt # For current date functionality
+
+# FUNCTION to print the menu and get user's choice
+FUNCTION print_menu(cart AS ShoppingCart) RETURNS STRING:
+    PRINT "MENU:"
+    PRINT "a - Add item to cart"
+    PRINT "r - Remove item from cart"
+    PRINT "c - Change item quantity"
+    PRINT "i - Output items' descriptions"
+    PRINT "o - Output shopping cart"
+    PRINT "q - Quit"
+    RETURN INPUT "Choose an action: " CONVERTED TO LOWERCASE
+END FUNCTION
+
+# Main part of the script
+
+# Initialize a list of items to pre-populate the cart
+DECLARE cart_items AS LIST OF ItemToPurchase
+SET cart_items TO [
+    CREATE ItemToPurchase WITH name="Apple", price=0.55, quantity=6, description="Fresh red apples"
+    CREATE ItemToPurchase WITH name="Banana", price=0.35, quantity=12, description="Ripe bananas"
+    CREATE ItemToPurchase WITH name="Orange", price=0.29, quantity=5, description="Juicy oranges"
+    CREATE ItemToPurchase WITH name="Grapes", price=2.99, quantity=2, description="Seedless grapes"
+    CREATE ItemToPurchase WITH name="Mango", price=1.55, quantity=4, description="Sweet mangoes"
+]
+
+# Get Customer Name
+PRINT "\nWELCOME TO THE SHOPPING PORTAL"
+DECLARE customer_name AS STRING
+SET customer_name TO INPUT "Please enter your name:" STRIPPED OF WHITESPACE
+PRINT "\nHello " + customer_name + "! Your shopping cart is being initialized with some items...\n"
+
+# Get current date formatted as "Month Day, Year"
+DECLARE current_date_str AS STRING
+SET current_date_str TO FORMAT(datetime.now(), "%B %d, %Y") # Assumes a way to get and format current date
+
+# Initialize the shopping cart
+DECLARE cart AS ShoppingCart
+SET cart TO CREATE ShoppingCart WITH customer_name=customer_name, current_date=current_date_str
+
+# Add initial items to the cart
+FOR EACH item IN cart_items:
+    CALL cart.add_item(item) # Assumes ShoppingCart class has an add_item method
+END FOR
+
+PRINT "\nOUTPUT SHOPPING CART"
+CALL cart.print_cart() # Assumes ShoppingCart class has a print_cart method
+PRINT "" # For an empty line
+
+# Get the first action from the user
+DECLARE action AS STRING
+SET action TO print_menu(cart)
+
+# Main loop for user actions
+WHILE action IS NOT EQUAL TO "q":
+    PRINT "" # For an empty line
+    IF action EQUALS "a" THEN
+        PRINT "ADD ITEM TO CART"
+        DECLARE item_name AS STRING
+        SET item_name TO INPUT "Enter the item name: "
+        DECLARE item_price AS FLOAT
+        SET item_price TO INPUT "Enter the item price: " CONVERTED TO FLOAT
+        DECLARE item_quantity AS INTEGER
+        SET item_quantity TO INPUT "Enter the item quantity: " CONVERTED TO INTEGER
+        DECLARE item_description AS STRING
+        SET item_description TO INPUT "Enter the item description: "
+        PRINT "" # For an empty line
+        CALL cart.add_item(CREATE ItemToPurchase WITH name=item_name, price=item_price, quantity=item_quantity, description=item_description)
+    ELSE IF action EQUALS "r" THEN
+        PRINT "REMOVE ITEM FROM CART"
+        DECLARE item_name_to_remove AS STRING
+        SET item_name_to_remove TO INPUT "Enter the item name to remove: "
+        PRINT "" # For an empty line
+        CALL cart.remove_item(item_name_to_remove) # Assumes ShoppingCart class has a remove_item method
+    ELSE IF action EQUALS "c" THEN
+        PRINT "CHANGE ITEM QUANTITY"
+        DECLARE item_name_to_modify AS STRING
+        SET item_name_to_modify TO INPUT "Enter the item name to modify: "
+        DECLARE new_quantity AS INTEGER
+        SET new_quantity TO INPUT "Enter the new quantity: " CONVERTED TO INTEGER
+        PRINT "" # For an empty line
+        # Assumes ShoppingCart class has a modify_item method that can take an ItemToPurchase object
+        # where only relevant fields (like quantity) are updated.
+        # Here, we create a temporary ItemToPurchase object with the name and new quantity.
+        # The price and description are passed as NULL or a special value indicating they shouldn't be changed,
+        # depending on how modify_item is implemented. The Python code uses None for price.
+        CALL cart.modify_item(CREATE ItemToPurchase WITH name=item_name_to_modify, price=NULL, quantity=new_quantity, description=NULL)
+    ELSE IF action EQUALS "i" THEN
+        PRINT "OUTPUT ITEMS' DESCRIPTIONS"
+        CALL cart.print_descriptions() # Assumes ShoppingCart class has a print_descriptions method
+    ELSE IF action EQUALS "o" THEN
+        PRINT "OUTPUT SHOPPING CART"
+        CALL cart.print_cart()
+    ELSE
+        PRINT "Invalid action. Please choose a valid action from the MENU."
+    END IF
+    PRINT "" # For an empty line
+    SET action TO print_menu(cart)
+END WHILE
+
+PRINT "\nExiting the shopping portal. Thank you!\n"

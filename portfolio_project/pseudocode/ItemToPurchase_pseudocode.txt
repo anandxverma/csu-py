@@ -1,0 +1,86 @@
+# Class representing an item to purchase in a shopping cart
+# Class has attributes: item_name, item_price, item_quantity, and item_description
+# Class has methods to:
+#   - Calculate the total cost of the item
+#   - Print the item details
+
+CLASS ItemToPurchase:
+
+    # Class attributes
+    PRIVATE __item_name AS STRING
+    PRIVATE __item_price AS FLOAT
+    PRIVATE __item_quantity AS INTEGER
+    PRIVATE __item_description AS STRING
+
+    # Class Constructor
+    FUNCTION __init__(name DEFAULT "none", price DEFAULT 0.0, quantity DEFAULT 0, description DEFAULT "none"):
+        SET __item_name TO name
+        SET __item_price TO price
+        SET __item_quantity TO quantity
+        SET __item_description TO description
+    END FUNCTION
+
+    # Getter for item_name
+    FUNCTION get_item_name():
+        RETURN __item_name
+    END FUNCTION
+
+    # Setter for item_name
+    FUNCTION set_item_name(name):
+        SET __item_name TO name
+    END FUNCTION
+
+    # Getter for item_price
+    FUNCTION get_item_price():
+        RETURN __item_price
+    END FUNCTION
+
+    # Setter for item_price
+    FUNCTION set_item_price(price):
+        IF price >= 0 THEN
+            SET __item_price TO price
+        ELSE
+            RAISE ValueError "Price cannot be negative."
+        END IF
+    END FUNCTION
+
+    # Getter for item_quantity
+    FUNCTION get_item_quantity():
+        RETURN __item_quantity
+    END FUNCTION
+
+    # Setter for item_quantity
+    FUNCTION set_item_quantity(quantity):
+        IF quantity IS AN INTEGER AND quantity >= 0 THEN
+            SET __item_quantity TO quantity
+        ELSE
+            RAISE ValueError "Quantity is not a valid number."
+        END IF
+    END FUNCTION
+
+    # Getter for item_description
+    FUNCTION get_description():
+        RETURN __item_description
+    END FUNCTION
+
+    # Setter for item_description
+    FUNCTION set_description(description_text):  # Renamed parameter to avoid conflict with attribute
+        SET __item_description TO description_text
+    END FUNCTION
+
+    # Method to calculate total cost
+    FUNCTION calc_total_cost():
+        RETURN get_item_quantity() * get_item_price()
+    END FUNCTION
+
+    # Method to return item details as string
+    FUNCTION __str__():
+        RETURN get_item_name() + " " + get_item_quantity() + " @ $" + FORMAT(get_item_price(), ".2f") + " = $" + FORMAT(calc_total_cost(), ".2f")
+    END FUNCTION
+
+    # Method to print item details
+    FUNCTION print_item_cost():
+        PRINT __str__()
+    END FUNCTION
+
+END CLASS
